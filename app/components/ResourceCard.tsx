@@ -17,7 +17,7 @@ export interface ResourceCardProps {
   author: Author;
 }
 
-function ResourceCard({
+export default function ResourceCard({
   id,
   category,
   title,
@@ -78,7 +78,7 @@ function ResourceCard({
               src={avatarPath}
               alt={author.name}
               fill
-              className="object-cover"
+              className="w-full h-full object-cover"
               sizes="40px"
             />
           </div>
@@ -93,5 +93,3 @@ function ResourceCard({
     </div>
   );
 }
-
-export default ResourceCard;

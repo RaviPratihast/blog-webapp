@@ -16,7 +16,8 @@ export interface ResourceCardProps {
   image: string;
 }
 
- function ResourceCard({
+function ResourceCard({
+  id,
   category,
   title,
   description,
@@ -36,7 +37,7 @@ export interface ResourceCardProps {
           </span>
         </div>
 
-        <Link href="#" className="group block">
+        <Link href={`/posts/${id}`} className="group block">
           <div className="flex items-center gap-2 mb-3">
             <h3 className="font-semibold text-xl text-[#101828] group-hover:text-[#6941C6]">
               {title}

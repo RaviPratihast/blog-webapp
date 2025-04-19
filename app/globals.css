@@ -51,46 +51,16 @@ body {
   font-family: var(--font-inter);
 }
 
-/* Background gradient for the page */
-/* .bg-gradient-purple {
-  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 60%, #f9f5ff 100%);
-  position: relative;
-}
-
-.bg-gradient-purple::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='455' viewBox='0 0 1440 455' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-4 357.004L1440 138V455H-4V357.004Z' fill='%23F9F5FF'/%3E%3Cpath d='M-4 379.004L1440 160V455H-4V379.004Z' fill='%23F4EBFF'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top center;
-  z-index: -1;
-  pointer-events: none;
-} */
-
+/* Remove gradient background styles */
 .bg-gradient-purple {
-  position: relative; /* Make sure this is set */
-  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 60%, #f9f5ff 100%);
-  z-index: 0; /* Important: ensures children will appear above */
+  position: relative;
+  background: #ffffff;
+  z-index: 0;
 }
 
+/* Remove the gradient SVG background */
 .bg-gradient-purple::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='455' viewBox='0 0 1440 455' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-4 357.004L1440 138V455H-4V357.004Z' fill='%23F9F5FF'/%3E%3Cpath d='M-4 379.004L1440 160V455H-4V379.004Z' fill='%23F4EBFF'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top center;
-  z-index: -1;
-  pointer-events: none;
+  display: none;
 }
 
 /* Card hover effects */

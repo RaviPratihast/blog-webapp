@@ -26,12 +26,6 @@ interface Comment {
   body: string;
 }
 
-async function getPost(id: string): Promise<Post> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch post");
-  return res.json();
-}
-
 async function getUser(userId: number): Promise<User> {
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/users/${userId}`
@@ -64,24 +58,38 @@ function Loading() {
   );
 }
 
-export default function PostContent({ postId }: { postId: string }) {
+interface PostContentProps {
+  postId: string;
+  initialPost?: Post;
+}
+
+export default function PostContent({ postId, initialPost }: PostContentProps) {
   const { avatarPath, cardImagePath } = useImages();
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<Post | null>(initialPost || null);
   const [user, setUser] = useState<User | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialPost);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const postData = await getPost(postId);
-        const [userData, commentsData] = await Promise.all([
-          getUser(postData.userId),
-          getComments(postId),
-        ]);
-        setPost(postData);
-        setUser(userData);
-        setComments(commentsData);
+        if (!post) {
+          const res = await fetch(
+            `https://jsonplaceholder.typicode.com/posts/${postId}`
+          );
+          if (!res.ok) throw new Error("Failed to fetch post");
+          const postData = await res.json();
+          setPost(postData);
+        }
+
+        if (post) {
+          const [userData, commentsData] = await Promise.all([
+            getUser(post.userId),
+            getComments(postId),
+          ]);
+          setUser(userData);
+          setComments(commentsData);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -90,7 +98,7 @@ export default function PostContent({ postId }: { postId: string }) {
     }
 
     fetchData();
-  }, [postId]);
+  }, [postId, post]);
 
   if (loading || !post || !user) {
     return <Loading />;
@@ -120,6 +128,7 @@ export default function PostContent({ postId }: { postId: string }) {
             alt={user.name}
             width={40}
             height={40}
+            className="w-full h-full object-cover"
             sizes="40px"
           />
         </div>
@@ -147,6 +156,7 @@ export default function PostContent({ postId }: { postId: string }) {
                   alt={comment.name}
                   width={40}
                   height={40}
+                  className="w-full h-full object-cover"
                   sizes="40px"
                 />
               </div>
@@ -171,6 +181,7 @@ export default function PostContent({ postId }: { postId: string }) {
             alt={user.name}
             width={48}
             height={48}
+            className="w-full h-full object-cover"
             sizes="48px"
           />
         </div>

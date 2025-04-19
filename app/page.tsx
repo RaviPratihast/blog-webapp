@@ -1,25 +1,50 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ResourceCard from "./components/ResourceCard";
 import SearchInput from "./components/SearchInput";
 import Pagination from "./components/Pagination";
-import { resources } from "./constants/resources";
 
- function Home() {
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
+
+function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const resourcesPerPage = 9;
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        const data = await response.json();
+        setPosts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   // Filter resources based on search query
-  const filteredResources = resources.filter((resource) => {
+  const filteredResources = posts.filter((post) => {
     if (!searchQuery) return true;
 
     const query = searchQuery.toLowerCase();
     return (
-      resource.title.toLowerCase().includes(query) ||
-      resource.description.toLowerCase().includes(query) ||
-      resource.category.toLowerCase().includes(query)
+      post.title.toLowerCase().includes(query) ||
+      post.body.toLowerCase().includes(query)
     );
   });
 
@@ -34,13 +59,13 @@ import { resources } from "./constants/resources";
   // Handling search
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1); // on the new search, it will reset to first page...
+    setCurrentPage(1);
   };
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-7xl">
       <div className="text-center mb-12">
-        <p className="inline-block px-4 py-1 text-[#6941C6] text-lg font-medium bg-[#f4ebff]  rounded-full">
+        <p className="inline-block px-4 py-1 text-[#6941C6] text-lg font-medium bg-[#f4ebff] rounded-full">
           Our blog
         </p>
 
@@ -55,18 +80,36 @@ import { resources } from "./constants/resources";
         <SearchInput onSearch={handleSearch} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {paginatedResources.map((resource) => (
-          <ResourceCard key={resource.id} {...resource} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-center text-[#6941C6]">Loading posts...</div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {paginatedResources.map((post) => (
+              <ResourceCard
+                key={post.id}
+                id={post.id}
+                category="Article"
+                title={post.title}
+                description={post.body}
+                image="/images/placeholder.jpg"
+                author={{
+                  name: `Author ${post.userId}`,
+                  date: new Date().toLocaleDateString(),
+                  avatar: "/images/placeholder.jpg",
+                }}
+              />
+            ))}
+          </div>
 
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </>
       )}
     </div>
   );

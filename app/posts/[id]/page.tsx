@@ -26,11 +26,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
+type Props = {
   params: { id: string };
-}): Promise<Metadata> {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = params.id;
   try {
     const post = await getPost(id);
@@ -46,7 +46,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+export default async function PostPage({ params }: Props) {
   const id = params.id;
   const post = await getPost(id);
 

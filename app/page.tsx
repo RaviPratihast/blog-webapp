@@ -92,11 +92,9 @@ function Home() {
                 category="Article"
                 title={post.title}
                 description={post.body}
-                image="/images/placeholder.jpg"
                 author={{
                   name: `Author ${post.userId}`,
                   date: new Date().toLocaleDateString(),
-                  avatar: "/images/placeholder.jpg",
                 }}
               />
             ))}

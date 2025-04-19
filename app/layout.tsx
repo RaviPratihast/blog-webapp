@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ImageProvider } from "./context/ImageContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,15 +23,15 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} antialiased bg-gradient-purple min-h-screen`}
-      >
-        <main className="min-h-screen overflow-x-hidden">{children}</main>
+      <body className={inter.className}>
+        <ImageProvider>
+          <main className="min-h-screen overflow-x-hidden">{children}</main>
+        </ImageProvider>
       </body>
     </html>
   );

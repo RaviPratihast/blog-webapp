@@ -29,7 +29,14 @@ function ResourceCard({
   return (
     <div className="group bg-white rounded overflow-hidden border border-[#EAECF0] hover:border-transparent hover:shadow-[0px_12px_16px_-4px_rgba(16,24,40,0.08),0px_4px_6px_-2px_rgba(16,24,40,0.03)] transition-all duration-300">
       <div className="relative h-[240px] w-full bg-[#F9FAFB]">
-        <Image src={cardImagePath} alt={title} fill className="object-cover" />
+        <Image
+          src={cardImagePath}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+        />
       </div>
 
       <div className="p-8">
@@ -72,6 +79,7 @@ function ResourceCard({
               alt={author.name}
               fill
               className="object-cover"
+              sizes="40px"
             />
           </div>
           <div className="ml-3">

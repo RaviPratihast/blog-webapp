@@ -8,6 +8,13 @@ interface Post {
   userId: number;
 }
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
 async function getPost(id: string): Promise<Post> {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
     next: { revalidate: 60 },
@@ -28,9 +35,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   try {
     const post = await getPost(params.id);
     return {
@@ -45,7 +50,7 @@ export async function generateMetadata({
   }
 }
 
-export default function PostPage({ params }: { params: { id: string } }) {
+export default function PostPage({ params }: PageProps) {
   return (
     <div className="max-w-[1000px] mx-auto px-4 py-8">
       <PostContent postId={params.id} />

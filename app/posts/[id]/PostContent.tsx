@@ -108,12 +108,20 @@ export default function PostContent({ postId }: { postId: string }) {
           alt="Post cover"
           fill
           className="object-cover"
+          sizes="100vw"
+          priority
         />
       </div>
 
       <div className="flex items-center gap-3 mb-8">
         <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-          <Image src={avatarPath} alt={user.name} width={40} height={40} />
+          <Image
+            src={avatarPath}
+            alt={user.name}
+            width={40}
+            height={40}
+            sizes="40px"
+          />
         </div>
         <div>
           <p className="font-medium text-gray-900">{user.name}</p>
@@ -139,6 +147,7 @@ export default function PostContent({ postId }: { postId: string }) {
                   alt={comment.name}
                   width={40}
                   height={40}
+                  sizes="40px"
                 />
               </div>
               <div>
@@ -157,7 +166,13 @@ export default function PostContent({ postId }: { postId: string }) {
 
       <div className="mt-16 flex items-center gap-4 border-t border-gray-200 pt-8">
         <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
-          <Image src={avatarPath} alt={user.name} width={48} height={48} />
+          <Image
+            src={avatarPath}
+            alt={user.name}
+            width={48}
+            height={48}
+            sizes="48px"
+          />
         </div>
         <div>
           <p className="font-medium text-gray-900">Written by {user.name}</p>

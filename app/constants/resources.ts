@@ -1,5 +1,3 @@
-import { ResourceCardProps } from "../components/ResourceCard";
-
 interface Author {
   name: string;
   date: string;

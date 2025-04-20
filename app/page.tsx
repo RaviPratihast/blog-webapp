@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ResourceCard from "./components/ResourceCard";
+import ResourceCardSkeleton from "./components/ResourceCardSkeleton";
 import SearchInput from "./components/SearchInput";
 import Pagination from "./components/Pagination";
 
@@ -69,23 +70,24 @@ function Home() {
           Our blog
         </p>
 
-        <h1 className="text-[32px] md:text-[36px] font-semibold mb-4 text-[#42307D]">
+        <h1 className="text-[48px] md:text-[45px] font-semibold mb-4 text-[#53389E]">
           Resources and insights
         </h1>
 
-        <p className="text-[#6941C6] mb-8 text-base max-w-2xl mx-auto">
+        <p className="text-[#6941C6] mb-8 text-xl max-w-2xl mx-auto">
           The latest industry news, interviews, technologies, and resources.
         </p>
 
         <SearchInput onSearch={handleSearch} />
       </div>
 
-      {loading ? (
-        <div className="text-center text-[#6941C6]">Loading posts...</div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {paginatedResources.map((post) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {loading
+          ? // Show 6 skeleton cards while loading
+            Array.from({ length: 6 }).map((_, index) => (
+              <ResourceCardSkeleton key={index} />
+            ))
+          : paginatedResources.map((post) => (
               <ResourceCard
                 key={post.id}
                 id={post.id}
@@ -98,16 +100,16 @@ function Home() {
                 }}
               />
             ))}
-          </div>
+      </div>
 
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          )}
-        </>
+      {!loading && totalPages > 1 && (
+        <div className="flex justify-center mt-8">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       )}
     </div>
   );

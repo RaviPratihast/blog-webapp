@@ -4,7 +4,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
- function Pagination({
+function Pagination({
   currentPage,
   totalPages,
   onPageChange,
@@ -46,10 +46,10 @@ interface PaginationProps {
       {getPageNumbers().map((page, index) => (
         <span
           key={index}
-          className={`h-10 w-10 flex items-center justify-center rounded-md text-sm cursor-pointer ${
+          className={`h-10 w-10 flex items-center justify-center rounded-full text-sm cursor-pointer ${
             page === currentPage
               ? "bg-[#7F56D9] text-white"
-              : "text-[#667085] hover:bg-[#F9F5FF] hover:text-[#7F56D9]"
+              : "text-[#667085] bg-[#F5F5F5]  hover:text-[#7F56D9]"
           } ${page === "..." ? "cursor-default hover:bg-transparent" : ""}`}
           onClick={() => page !== "..." && onPageChange(page as number)}
         >
@@ -59,5 +59,4 @@ interface PaginationProps {
     </div>
   );
 }
-
 export default Pagination;

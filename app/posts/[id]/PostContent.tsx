@@ -183,9 +183,8 @@ export default function PostContent({ postId, initialPost }: PostContentProps) {
               <div className="flex justify-end mb-6">
                 <button
                   onClick={() => setIsCommentFormVisible(!isCommentFormVisible)}
-                  className="flex items-center gap-2 text-violet-600 hover:text-violet-700 font-medium"
+                  className="flex items-center gap-2 text-[#6941C6] hover:text-violet-700 font-medium"
                 >
-                  <span className="text-[14px]">Add Comment</span>
                   <svg
                     width="20"
                     height="20"
@@ -197,13 +196,14 @@ export default function PostContent({ postId, initialPost }: PostContentProps) {
                     }`}
                   >
                     <path
-                      d="M5 7.5L10 12.5L15 7.5"
+                      d="M15 12.5L10 7.5L5 12.5"
                       stroke="currentColor"
                       strokeWidth="1.67"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
+                  <span className="text-[14px]">Add Comment</span>
                 </button>
               </div>
 
@@ -230,7 +230,7 @@ export default function PostContent({ postId, initialPost }: PostContentProps) {
                       <div className="flex justify-end mt-4">
                         <button
                           onClick={handleAddComment}
-                          className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors"
+                          className="px-4 py-2 bg-[#6941C6] text-white rounded-lg hover:bg-violet-700 transition-colors"
                         >
                           Post Comment
                         </button>

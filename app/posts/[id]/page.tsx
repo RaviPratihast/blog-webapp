@@ -55,8 +55,37 @@ export default async function PostPage({
   const post = await getPost(id);
 
   return (
-    <div className="max-w-[1000px] mx-auto px-4 py-8">
-      <PostContent postId={id} initialPost={post} />
+    <div className="bg-[#F9F5FF] min-h-screen">
+      <div className="max-w-[1000px] mx-auto px-4 py-8">
+        <PostContent postId={id} initialPost={post} />
+      </div>
+      <footer className="w-full bg-white mt-16">
+        <div className="py-12">
+          <nav className="flex justify-center space-x-8 mb-8">
+            <a
+              href="#"
+              className="text-gray-600 hover:text-gray-900 text-[12px]"
+            >
+              About
+            </a>
+            <a
+              href="#"
+              className="text-gray-600 hover:text-gray-900 text-[12px]"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="text-gray-600 hover:text-gray-900 text-[12px]"
+            >
+              Contact
+            </a>
+          </nav>
+          <p className="text-center text-gray-600 font-merriweather font-bold text-[14px] leading-[160%] tracking-[0%]">
+            Copyright © {new Date().getFullYear()}, All Rights Reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

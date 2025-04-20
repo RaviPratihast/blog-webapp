@@ -5,10 +5,7 @@ interface SearchInputProps {
   onSearch?: (query: string) => void;
 }
 
-function SearchInput({
-  placeholder = "Search",
-  onSearch,
-}: SearchInputProps) {
+function SearchInput({ placeholder = "Search", onSearch }: SearchInputProps) {
   const [query, setQuery] = useState("");
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +17,7 @@ function SearchInput({
   };
 
   return (
-    <div className="max-w-md mx-auto relative">
+    <div className="max-w-[320px] mx-auto relative">
       <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
         <svg
           className="h-[20px] w-[20px] text-[#667085]"
@@ -41,7 +38,7 @@ function SearchInput({
         value={query}
         onChange={handleSearch}
         placeholder={placeholder}
-        className="pl-10 pr-4 py-2.5 w-full border border-[#D0D5DD] rounded-lg text-[#101828] placeholder-[#667085] text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-[#7F56D9] focus:border-[#7F56D9]"
+        className="pl-10 pr-4 py-2.5 w-full border border-[#D0D5DD] rounded-md text-[#101828] placeholder-[#667085] text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-[#7F56D9] focus:border-[#7F56D9]"
       />
     </div>
   );

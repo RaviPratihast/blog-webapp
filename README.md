@@ -100,8 +100,8 @@ Given more time, these features could be added:
 
 This project is deployed on Vercel. You can view the live version at: [https://blog-webapp-4bj3-inky.vercel.app/]
 
-## References blogs
+## References & Resources
 
-https://www.traversymedia.com/blog/nextjs-admin-dashboard-project
-https://peerlist.io/blog/engineering/how-to-use-shadcn-ui-with-nextjs
-https://www.typescriptlang.org/
+- [Next.js Admin Dashboard Tutorial](https://www.traversymedia.com/blog/nextjs-admin-dashboard-project) - Tutorial on building Next.js admin dashboard
+- [How to Use shadcn/ui with Next.js](https://peerlist.io/blog/engineering/how-to-use-shadcn-ui-with-nextjs) - Guide for implementing shadcn/ui
+- [TypeScript Documentation](https://www.typescriptlang.org/) - Official TypeScript documentation and guides

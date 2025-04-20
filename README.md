@@ -2,7 +2,7 @@
 
 A modern, responsive blog application built with Next.js, TypeScript, and Tailwind CSS. This project features a clean, contemporary design with seamless user experience across all devices.
 
-##Features
+## Features
 
 - **Modern UI/UX**: Clean and responsive design following Figma specifications
 - **Blog Listing**: Dynamic blog posts with search functionality
@@ -19,7 +19,7 @@ A modern, responsive blog application built with Next.js, TypeScript, and Tailwi
 - [Tailwind CSS](https://tailwindcss.com/) - For styling
 - [JSONPlaceholder](https://jsonplaceholder.typicode.com/) - For mock API data
 
-##Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -58,7 +58,7 @@ A modern, responsive blog application built with Next.js, TypeScript, and Tailwi
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## 📱 Features Overview
+## Features Overview
 
 ### Homepage
 
@@ -72,7 +72,6 @@ A modern, responsive blog application built with Next.js, TypeScript, and Tailwi
 - Author information
 - Comments section with the ability to add new comments
 - Responsive design for all screen sizes
-
 
 ## Design Considerations & Challenges
 
@@ -97,14 +96,12 @@ Given more time, these features could be added:
 
 - Dark/Light mode toggle
 
-
-
-##Deployment
+## Deployment
 
 This project is deployed on Vercel. You can view the live version at: [https://blog-webapp-4bj3-inky.vercel.app/]
 
-##References blogs
+## References & Resources
 
-https://www.traversymedia.com/blog/nextjs-admin-dashboard-project
-https://peerlist.io/blog/engineering/how-to-use-shadcn-ui-with-nextjs
-https://www.typescriptlang.org/
+- [Next.js Admin Dashboard Tutorial](https://www.traversymedia.com/blog/nextjs-admin-dashboard-project) - Tutorial on building Next.js admin dashboard
+- [How to Use shadcn/ui with Next.js](https://peerlist.io/blog/engineering/how-to-use-shadcn-ui-with-nextjs) - Guide for implementing shadcn/ui
+- [TypeScript Documentation](https://www.typescriptlang.org/) - Official TypeScript documentation and guides
